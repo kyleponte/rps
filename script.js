@@ -12,17 +12,16 @@ function getComputerChoice() {
     return ComputerRoll;
 }
 
-function getHumanChoice() {
-    let playerRoll = prompt('Rock, Paper, or Scissors?').toLowerCase();
-    return playerRoll;
-}
+let humanScore = 0;
+let computerScore = 0;
 
+function playGame(playerMove) {
 
+    
 
-function playGame() {
+    let humanChoice = playerMove.toLowerCase();
+    let computerChoice = getComputerChoice();
 
-    let humanScore = 0;
-    let computerScore = 0;
     function playRound(humanChoice, computerChoice) {
         if (humanChoice == computerChoice) {
             console.log('You tied!')
@@ -33,13 +32,12 @@ function playGame() {
             console.log(`You lost! ${computerChoice} beats ${humanChoice}`);
             computerScore += 1;
         }
+        
+        document.querySelector('.player-score').innerHTML = `Player Score: ${humanScore}`;
+        document.querySelector('.computer-score').innerHTML = `Computer Score: ${computerScore}`;
+
     }
 
-    for (i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
+    playRound(humanChoice, computerChoice);
 
-    console.log(`The final score was Player: ${humanScore} to Computer: ${computerScore}`);
 }
-
-playGame();
